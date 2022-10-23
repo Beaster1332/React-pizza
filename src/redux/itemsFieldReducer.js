@@ -16,13 +16,13 @@ const itemsFieldReducer = (state = initialState, action) => {
                 ...state,
                 clientCart: state.pizzaCatalog.map(pizza => pizza.id === action.pizzaId ?
                     { pizza } : null
-                ),
+                )
             }
         default:
             return state;
     }
 }
 
-export const addPizzaAC = (pizzaId) => ({ type: ADD_PIZZA_TO_CART, pizzaId });
+export const addPizzaToCartAC = (pizzaId) => ({ type: ADD_PIZZA_TO_CART, pizzaId });
 
 export default itemsFieldReducer;

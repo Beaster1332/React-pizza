@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addPizzaAC } from "../../redux/itemsFieldReducer";
+import { addPizzaToCartAC } from "../../redux/itemsFieldReducer";
 import ItemsField from "./ItemsField";
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPizzaToCart: (pizzaId) => dispatch(addPizzaAC(pizzaId))
+        addPizza: (pizzaId) => dispatch(addPizzaToCartAC(pizzaId))
     }
 }
 

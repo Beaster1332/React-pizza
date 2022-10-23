@@ -1,13 +1,28 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import PizzaItem from './PizzaItem/PizzaItem.jsx';
 
-const ItemsField = () => {
+const ItemsField = (props) => {
+
+    let pizzaItems = props.pizzaCatalog.map(
+        p => <PizzaItem
+            key={p.id}
+            id={p.id}
+            pizzaName={p.name}
+            description={p.description}
+            weight={p.weight}
+            addPizza={props.addPizza}
+        />
+    )
+
     return <Container
         sx={{
             mt: '20px'
         }}
     >
-        Hallo mein Freund!
+        <Grid container spacing={2}>
+            {pizzaItems}
+        </Grid>
     </Container>
 }
 
