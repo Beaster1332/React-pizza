@@ -1,8 +1,9 @@
 import React from "react";
-import { AppBar, Toolbar, IconButton, Typography, Container } from "@mui/material";
+import BasketContainer from './Basket/BasketContainer.jsx';
+import { AppBar, Toolbar, IconButton, Typography, Container, Badge } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 
-const Header = () => {
+const Header = ({ onOpenCart, orderLength }) => {
     return <AppBar position="static">
         <Container>
             <Toolbar>
@@ -19,11 +20,18 @@ const Header = () => {
                     color="inherit"
                     aria-label="menu"
                     sx={{ mr: 2 }}
+                    onClick={() => onOpenCart()}
                 >
-                    <ShoppingCart />
+                    <Badge
+                        color="secondary"
+                        badgeContent={orderLength}
+                    >
+                        <ShoppingCart />
+                    </Badge>
                 </IconButton>
             </Toolbar>
         </Container>
+        <BasketContainer />
     </AppBar>
 }
 
