@@ -1,7 +1,10 @@
 import React from "react";
 import { Card, CardMedia, Grid, CardContent, Typography, CardActions, Button } from "@mui/material";
 
-const PizzaItem = ({ pizzaName, description, weight, addPizza, id, imageSrc }) => {
+const PizzaItem = (props) => {
+
+    const { pizzaName, description, weight, price, addPizza, imageSrc } = props;
+
     return <Grid item xs={12} md={4}>
         <Card>
             <CardMedia
@@ -28,13 +31,28 @@ const PizzaItem = ({ pizzaName, description, weight, addPizza, id, imageSrc }) =
                 <Typography
                     variant="body1"
                     color='text.secondary'
-                    sx={{ mt: '10px', fontWeight: 600 }}
+                    sx={{
+                        mt: '10px',
+                        fontWeight: 600
+                    }}
                 >
                     {weight}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => addPizza(pizzaName)}>Добавить</Button>
+                <Button
+                    size="small"
+                    onClick={() => addPizza(pizzaName)}
+                >
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            fontWeight: 600
+                        }}
+                    >
+                        {price} руб
+                    </Typography>
+                </Button>
             </CardActions>
         </Card>
     </Grid>

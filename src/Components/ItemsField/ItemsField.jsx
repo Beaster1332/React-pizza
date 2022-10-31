@@ -11,6 +11,7 @@ const ItemsField = (props) => {
             pizzaName={p.name}
             description={p.description}
             weight={p.weight}
+            price={p.price}
             imageSrc={p.src}
             addPizza={props.addPizza}
         />

@@ -1,9 +1,10 @@
 import React from "react";
 import BasketContainer from './Basket/BasketContainer.jsx';
+import Snack from './Snack/Snack.jsx';
 import { AppBar, Toolbar, IconButton, Typography, Container, Badge } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 
-const Header = ({ onOpenCart, orderLength }) => {
+const Header = ({ onOpenCart, orderLength, isSnackOpen, onCloseSnack }) => {
     return <AppBar position="static">
         <Container>
             <Toolbar>
@@ -32,6 +33,10 @@ const Header = ({ onOpenCart, orderLength }) => {
             </Toolbar>
         </Container>
         <BasketContainer />
+        <Snack
+            isSnackOpen={isSnackOpen}
+            closeSnack={() => onCloseSnack()}
+        />
     </AppBar>
 }
 
