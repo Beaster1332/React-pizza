@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 const ADD_PIZZA_TO_CART = 'itemsField/ADD_PIZZA_TO_CART';
+const PLUS_PIZZA = 'itemsField/PLUS_PIZZA';
+const MINUS_PIZZA = 'itemsField/MINUS_PIZZA';
 const ON_OPEN_CART = 'itemsField/ON_OPEN_CART';
 const ON_CLOSE_CART = 'itemsField/ON_CLOSE_CART';
 const REMOVE_ITEM_FROM_CART = 'itemsField/REMOVE_ITEM_FROM_CART';
@@ -21,8 +23,24 @@ const itemsFieldReducer = (state = initialState, action) => {
             return {
                 ...state,
                 clientCart: [ ...state.clientCart,
-                    { id: uuidv4(), pizzaName: action.pizzaName }
+                    { id: uuidv4(), pizzaName: action.pizzaName, quantity: 0 }
                 ]
+            }
+        case PLUS_PIZZA:
+            return {
+                ...state,
+                clientCart: state.clientCart.map(pizza => pizza.id === action.pizzaId ?
+                    { ...pizza, quantity: ++pizza.quantity } :
+                    pizza
+                )
+            }
+        case MINUS_PIZZA:
+            return {
+                ...state,
+                clientCart: state.clientCart.map(pizza => pizza.id === action.pizzaId ?
+                    { ...pizza, quantity: --pizza.quantity } :
+                    pizza
+                )
             }
         case ON_OPEN_CART:
             return {
@@ -45,6 +63,8 @@ const itemsFieldReducer = (state = initialState, action) => {
 }
 
 export const addPizzaToCartAC = (pizzaName) => ({ type: ADD_PIZZA_TO_CART, pizzaName });
+export const plusPizzaAC = (pizzaId) => ({ type: PLUS_PIZZA, pizzaId });
+export const minusPizzaAC = (pizzaId) => ({ type: MINUS_PIZZA, pizzaId });
 export const onOpenCartAC = () => ({ type: ON_OPEN_CART });
 export const onCloseCartAC = () => ({ type: ON_CLOSE_CART });
 export const removeItemFromCartAC = (itemId) => ({ type: REMOVE_ITEM_FROM_CART, itemId });

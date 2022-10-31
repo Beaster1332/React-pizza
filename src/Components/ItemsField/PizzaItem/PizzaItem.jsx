@@ -34,7 +34,7 @@ const PizzaItem = ({ pizzaName, description, weight, addPizza, id, imageSrc }) =
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => addPizza(pizzaName)}>Добавить +</Button>
+                <Button size="small" onClick={() => addPizza(pizzaName)}>Добавить</Button>
             </CardActions>
         </Card>
     </Grid>

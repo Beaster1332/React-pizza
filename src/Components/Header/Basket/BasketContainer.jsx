@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { onCloseCartAC, removeItemFromCartAC } from "../../../redux/itemsFieldReducer";
+import { minusPizzaAC, onCloseCartAC, plusPizzaAC, removeItemFromCartAC } from "../../../redux/itemsFieldReducer";
 import Basket from "./Basket.jsx";
 
 const mapStateToProps = (state) => {
@@ -12,6 +12,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onCloseCart: () => dispatch(onCloseCartAC()),
+        plusPizza: (pizzaId) => dispatch(plusPizzaAC(pizzaId)),
+        minusPizza: (pizzaId) => dispatch(minusPizzaAC(pizzaId)),
         removeItemFromCart: (itemId) => dispatch(removeItemFromCartAC(itemId)),
     }
 }
