@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPizza: (pizzaName) => dispatch(addPizzaToCartAC(pizzaName))
+        addPizza: (pizzaName, price) => dispatch(addPizzaToCartAC(pizzaName, price))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsField)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsField);

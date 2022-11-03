@@ -42,7 +42,7 @@ const PizzaItem = (props) => {
             <CardActions>
                 <Button
                     size="small"
-                    onClick={() => addPizza(pizzaName)}
+                    onClick={() => addPizza(pizzaName, price)}
                 >
                     <Typography
                         variant="body1"

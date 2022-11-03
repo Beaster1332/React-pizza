@@ -7,10 +7,11 @@ import { Close } from "@mui/icons-material";
 const OrderItem = (props) => {
 
     const {
+        itemName,
+        price,
         quantity,
         plusPizza,
         minusPizza,
-        itemName,
         removeItem
     } = props;
 
@@ -23,7 +24,7 @@ const OrderItem = (props) => {
             {itemName}
         </div>
         <IconButton
-            disabled={quantity === 0}
+            disabled={quantity === 0 || quantity === 1}
             onClick={() => minusPizza()}
         >
             <KeyboardArrowLeftIcon />
@@ -38,6 +39,12 @@ const OrderItem = (props) => {
         >
             <KeyboardArrowRightIcon />
         </IconButton>
+        <Typography
+            variant="body2"
+            color='text.secondary'
+        >
+            {price} руб x {quantity}
+        </Typography>
         <IconButton
             onClick={() => removeItem()}
         >

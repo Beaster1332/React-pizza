@@ -12,6 +12,9 @@ const ON_CLOSE_SNACK = 'itemsField/ON_CLOSE_SNACK';
 
 const REMOVE_ITEM_FROM_CART = 'itemsField/REMOVE_ITEM_FROM_CART';
 
+const MAKE_ORDER = 'itemsField/MAKE_ORDER';
+const ON_CLOSE_DIALOG = 'itemsField/ON_CLOSE_DIALOG';
+
 let initialState = {
     pizzaCatalog: [
         { name: 'Маргарита', weight: '500 гр', description: 'Типичная неаполитанская пицца, приготовленная из помидоров Сан-Марцано, сыра моцарелла, свежего базилика, соли и оливкового масла первого отжима.', price: 250, id: 1, src: 'https://img.taste.com.au/DhThzPm9/taste/2016/11/eat-pray-love-39581-3.jpeg' },
@@ -20,7 +23,9 @@ let initialState = {
     ],
     clientCart: [],
     isCartOpen: false,
-    isSnackOpen: false
+    isSnackOpen: false,
+    order: [],
+    isDialogOpen: false,
 }
 
 const itemsFieldReducer = (state = initialState, action) => {
@@ -30,7 +35,7 @@ const itemsFieldReducer = (state = initialState, action) => {
                 ...state,
                 isSnackOpen: true,
                 clientCart: [ ...state.clientCart,
-                    { id: uuidv4(), pizzaName: action.pizzaName, quantity: 0 }
+                    { id: uuidv4(), pizzaName: action.pizzaName, price: action.price, quantity: 1 }
                 ],
             }
         case PLUS_PIZZA:
@@ -69,12 +74,24 @@ const itemsFieldReducer = (state = initialState, action) => {
                 ...state,
                 clientCart: [...state.clientCart.filter(el => el.id !== action.itemId)]
             }
+        case MAKE_ORDER:
+            return {
+                ...state,
+                order: [...state.order, ...action.order],
+                clientCart: [],
+                isDialogOpen: true
+            }
+        case ON_CLOSE_DIALOG:
+            return {
+                ...state,
+                isDialogOpen: false
+            }
         default:
             return state;
     }
 }
 
-export const addPizzaToCartAC = (pizzaName) => ({ type: ADD_PIZZA_TO_CART, pizzaName });
+export const addPizzaToCartAC = (pizzaName, price) => ({ type: ADD_PIZZA_TO_CART, pizzaName, price });
 
 export const plusPizzaAC = (pizzaId) => ({ type: PLUS_PIZZA, pizzaId });
 export const minusPizzaAC = (pizzaId) => ({ type: MINUS_PIZZA, pizzaId });
@@ -85,5 +102,8 @@ export const onCloseCartAC = () => ({ type: ON_CLOSE_CART });
 export const onCloseSnackAC = () => ({ type: ON_CLOSE_SNACK });
 
 export const removeItemFromCartAC = (itemId) => ({ type: REMOVE_ITEM_FROM_CART, itemId });
+
+export const makeOrderAC = (order) => ({ type: MAKE_ORDER, order });
+export const onCloseDialogAC = () => ({ type: ON_CLOSE_DIALOG });
 
 export default itemsFieldReducer;
