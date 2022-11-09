@@ -76,6 +76,7 @@ const Basket = (props) => {
             >
                 <Button
                     variant='outlined'
+                    disabled={!order.length}
                     onClick={() => makeOrder(order)}
                 >
                     Сделать заказ
