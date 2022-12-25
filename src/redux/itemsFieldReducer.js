@@ -40,8 +40,8 @@ const itemsFieldReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isSnackOpen: true,
-                clientCart: [ ...state.clientCart,
-                    { id: uuidv4(), pizzaName: action.pizzaName, price: action.price, quantity: 1 }
+                clientCart: [...state.clientCart,
+                { id: uuidv4(), pizzaName: action.pizzaName, price: action.price, quantity: 1 }
                 ],
             }
         case PLUS_PIZZA:
